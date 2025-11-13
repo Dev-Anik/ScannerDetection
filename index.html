@@ -7,27 +7,33 @@
     <script src="https://unpkg.com/onscan.js@1.5.2/onscan.min.js"></script>
 </head>
 <body>
-    <h1>Scanner Machine Detection Test 1.1</h1>
-    <script>
-  onScan.attachTo(document, {
-    suffixKeyCodes: [13], // Enter key ends the scan
-    reactToPaste: true,   // optional, also catch pasted codes
-    onScan: function(code, qty) {
-      console.log("Scanned barcode:", code);
-      handleScan(code);
-    },
-    onScanError: function(e) {
-      console.error("Scan error:", e);
+  <h1>Scanner Machine Detection Test 1.2</h1>
+  <div id="result" style="font-size:20px;color:green;margin-top:20px;"></div>
+
+  <script src="https://unpkg.com/onscan.js@1.5.2/onscan.min.js"></script>
+  <script>
+    const resultDiv = document.getElementById('result');
+
+    onScan.attachTo(document, {
+      suffixKeyCodes: [13],
+      reactToPaste: true,
+      onScan: function(code, qty) {
+        console.log("Scanned barcode:", code);
+        handleScan(code);
+      },
+      onScanError: function(e) {
+        console.error("Scan error:", e);
+      }
+    });
+
+    function handleScan(code) {
+      resultDiv.textContent = "Scanned: " + code;
+      // Or trigger a custom toast message, sound, etc.
     }
-  });
-
-  function handleScan(code) {
-    alert("Scanned: " + code);
-    // do something with it
-  }
-</script>
-
+  </script>
 </body>
 
+
 </html>
+
 
